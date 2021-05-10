@@ -10,7 +10,7 @@
       class="delete-button"
       @click="$emit('delete-note', note.id)"
     >
-      Delete
+      ❌
     </span>
   </div>
 </template>
@@ -57,6 +57,10 @@ export default {
     position: absolute;
     top: $card-item-padding;
     right: $card-item-padding;
+    cursor: pointer;
+    &:active {
+      transform: scale(0.90);
+    }
   }
 
   * {
@@ -78,5 +82,10 @@ export default {
     margin-top: 5px;
     font-size: 1rem;
   }
+
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 </style>
