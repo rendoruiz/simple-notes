@@ -3,16 +3,24 @@
     class="note-list-item"
     @click="$emit('open-note', note.id)"
   >
-    <h3 class="title">#{{ note.id }}: {{ note.title }}</h3>
+    <span class="date">{{ shortDateFormat(note.id) }}</span>
+    <h3 class="title">{{ note.title }}</h3>
     <p class="content">{{ note.content }}</p>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'NoteListItem',
   props: {
     note: Object
+  },
+  methods: {
+    shortDateFormat(unixTime) {
+      return moment(unixTime).fromNow()
+    }
   }
 }
 </script>
@@ -21,6 +29,8 @@ export default {
 .note-list-item {
   @extend %theme-yellow;
 
+  display: flex;
+  flex-direction: column;
   padding: 15px;
   max-height: 200px;
   overflow: hidden;
@@ -39,6 +49,11 @@ export default {
     margin: 0;
     padding: 0;
     line-height: 1;
+  }
+
+  .date {
+    text-align: right;
+    font-size: 0.7rem;
   }
 
   .title {

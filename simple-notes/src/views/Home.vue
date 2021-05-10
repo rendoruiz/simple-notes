@@ -42,7 +42,6 @@ export default {
     },
     newNote() {
       const newNote = {
-        date: new Date(),
         id: Date.now(),
       }
       this.notes.push(newNote)
@@ -53,17 +52,17 @@ export default {
     if (!localStorage.notes) {
       this.notes = [
         {
-          id: 1,
+          id: 1620571057387,
           title: '1st Title',
           content: '1st Content',
         },
         {
-          id: 2,
+          id: 1620572057387,
           title: '2nd Title',
           content: '2nd Content',
         },
         {
-          id: 3,
+          id: 1620573057387,
           title: '3rd Title',
           content: '3rd Content',
         },
@@ -73,9 +72,9 @@ export default {
   mounted() {
     if (localStorage.notes) {
       this.notes = JSON.parse(localStorage.notes)
+      const firstNote = this.notes.slice(0, 1).shift();
+      this.openNote(firstNote.id)
     }
-    const firstNote = this.notes.slice(0, 1).shift().id;
-    this.openNote(firstNote)
   },
 }
 </script>

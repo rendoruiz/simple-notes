@@ -8,7 +8,9 @@
     >
       {{ titleText }}
     </div>
-    <span v-if="note.date">{{ formattedDate(note.date) }}</span>
+    <div class="date">
+      <span>{{ longDateFormat(note.id) }}</span>
+    </div>
     <div 
       class="content" 
       contenteditable="true"
@@ -39,8 +41,8 @@ export default {
       this.contentText = this.note.content
       this.$refs.title.focus()
     },
-    formattedDate(rawDate) {
-      return moment(rawDate).format('LLLL')
+    longDateFormat(unixTime) {
+      return moment(unixTime).format('LLLL')
     }
   },
   mounted() {
@@ -64,6 +66,15 @@ export default {
 
   .title {
     font-size: 2rem;
+  }
+
+  .date {
+    justify-self: start;
+    margin-top: 5px;
+    padding-top: 4px;
+    border-top: 1px solid rgb(128, 128, 128);
+    font-size: 0.8rem;
+    color: rgb(128, 128, 128);
   }
 
   .content {
