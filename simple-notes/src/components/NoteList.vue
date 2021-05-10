@@ -1,6 +1,9 @@
 <template>
   <div class="note-list">
     <h2>Notes List</h2>
+
+    <button @click="$emit('new-note')">new note</button>
+
     <div 
       class="note-list-items"
       v-if="notes"

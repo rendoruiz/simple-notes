@@ -1,6 +1,11 @@
 %note {
   border-top: $note-curvature solid;
   border-radius: $note-curvature;
+
+  .title,
+  .content {
+    white-space: pre-wrap;
+  }
 }
 
 %theme-yellow {

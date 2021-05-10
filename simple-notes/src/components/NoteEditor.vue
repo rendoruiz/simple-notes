@@ -8,6 +8,7 @@
     >
       {{ titleText }}
     </div>
+    <span v-if="note.date">{{ formattedDate(note.date) }}</span>
     <div 
       class="content" 
       contenteditable="true"
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'NoteEditor',
   props: {
@@ -30,15 +33,21 @@ export default {
       contentText: null,
     }
   },
+  methods: {
+    syncData() {
+      this.titleText = this.note.title
+      this.contentText = this.note.content
+      this.$refs.title.focus()
+    },
+    formattedDate(rawDate) {
+      return moment(rawDate).format('LLLL')
+    }
+  },
   mounted() {
-    this.titleText = this.note.title
-    this.contentText = this.note.content
-    this.$refs.title.focus()
+    this.syncData()
   },
   updated() {
-    this.titleText = this.note.title
-    this.contentText = this.note.content
-    this.$refs.title.focus()
+    this.syncData()
   },
 }
 </script>
@@ -51,12 +60,7 @@ export default {
   padding: 20px;
 
   display: grid;
-  grid-template-rows: auto 1fr;
-
-  .title,
-  .content {
-    white-space: pre-wrap;
-  }
+  grid-template-rows: auto auto 1fr;
 
   .title {
     font-size: 2rem;
