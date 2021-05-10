@@ -5,29 +5,31 @@
       class="note-list"
       v-if="notes"
     >
-      <div 
-        class="note-list-item"
+      <NoteListItem 
         v-for="note in notes"
         :key="note.id"
-      >
-        <span>{{ note.id }}</span>
-        <h3>{{ note.title }}</h3>
-        <p>{{ note.content }}</p>
-      </div>
+        :note="note" 
+        @open-note="$emit('open-note', note.id)"
+      />
     </div>
     
     <div v-else>
-      no content
+      <span>No content.</span>
     </div>
   </div>
 </template>
 
 <script>
+import NoteListItem from './NoteListItem'
+
 export default {
   name: 'NoteList',
+  components: {
+    NoteListItem,
+  },
   props: {
-    notes: Array
-  }
+    notes: Array,
+  },
 }
 </script>
 
@@ -36,10 +38,5 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px
-}
-.note-list-item {
-  background: rgb(255, 247, 209);
-  border-radius: 6px;
-  padding: 20px;
 }
 </style>
