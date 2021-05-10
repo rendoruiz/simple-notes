@@ -1,10 +1,16 @@
 <template>
   <div class="note-list">
-    <h2>Notes List</h2>
+    <header class="header">
+      <h2>Notes List</h2>
+      <button 
+        @click="$emit('new-note')"
+        class="add-button"
+      >
+        new note
+      </button>
+    </header>
 
-    <button @click="$emit('new-note')">new note</button>
-
-    <div 
+    <div
       class="note-list-items"
       v-if="notes"
     >
@@ -13,6 +19,7 @@
         :key="note.id"
         :note="note" 
         @open-note="$emit('open-note', note.id)"
+        @delete-note="$emit('delete-note', note.id)"
       />
     </div>
     
@@ -39,6 +46,31 @@ export default {
 
 <style scoped lang="scss">
 .note-list {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .add-button {
+      @extend %depth-shadow;
+      background: $theme-light-text;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      border-radius: $curve-radius;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: inherit;
+      &:focus {
+        outline: none;
+      }
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
 
   .note-list-items {
     display: flex;

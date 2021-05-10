@@ -6,6 +6,12 @@
     <span class="date">{{ shortDateFormat(note.id) }}</span>
     <h3 class="title">{{ note.title }}</h3>
     <p class="content">{{ note.content }}</p>
+    <span 
+      class="delete-button"
+      @click="$emit('delete-note', note.id)"
+    >
+      Delete
+    </span>
   </div>
 </template>
 
@@ -28,21 +34,29 @@ export default {
 <style scoped lang="scss">
 .note-list-item {
   @extend %theme-yellow;
+  @extend %depth-shadow;
 
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: $card-item-padding;
   max-height: 200px;
   overflow: hidden;
-
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 3px 8px rgba(0,0,0,0.1);
-  transition-property: box-shadow;
-  transition-duration: 0.3s, 0.3s;
-  transition-timing-function: ease, ease;
-  transition-delay: 0s, 0s;
+  position: relative;
 
   &:hover {
-    box-shadow: 0 6.4px 14.4px rgba(0,0,0,0.13),0 1.2px 3.6px rgba(0,0,0,0.1);
+    .delete-button {
+      display: inline-block;
+    }
+    .date {
+      visibility: hidden;
+    }
+  }
+
+  .delete-button {
+    display: none;
+    position: absolute;
+    top: $card-item-padding;
+    right: $card-item-padding;
   }
 
   * {

@@ -4,6 +4,7 @@
       :notes="notes" 
       @open-note="openNote"
       @new-note="newNote"
+      @delete-note="deleteNote"
     />
     <NoteEditor 
       v-if="selectedNote"
@@ -46,6 +47,12 @@ export default {
       }
       this.notes.push(newNote)
       this.openNote(newNote.id)
+    },
+    deleteNote(noteId) {
+      console.log(noteId)
+      if (confirm('confirm deletion')) {
+        this.notes = this.notes.filter(note => note.id !== noteId)
+      }
     }
   },
   created() {
@@ -72,8 +79,8 @@ export default {
   mounted() {
     if (localStorage.notes) {
       this.notes = JSON.parse(localStorage.notes)
-      const firstNote = this.notes.slice(0, 1).shift();
-      this.openNote(firstNote.id)
+      const latestNote = this.notes.slice(0, 1).shift()
+      this.openNote(latestNote.id)
     }
   },
 }
