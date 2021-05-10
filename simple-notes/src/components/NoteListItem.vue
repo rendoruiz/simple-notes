@@ -19,11 +19,11 @@ export default {
 
 <style scoped lang="scss">
 .note-list-item {
-  background: $theme-yellow-bg;
-  border-top: 8px solid $theme-yellow-strip;
-  color: $theme-yellow-text;
-  border-radius: $note-curvature;
+  @extend %theme-yellow;
+  
   padding: 15px;
+  max-height: 200px;
+  overflow: hidden;
 
   * {
     margin: 0;

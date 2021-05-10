@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="note-list">
     <h2>Notes List</h2>
     <div 
-      class="note-list"
+      class="note-list-items"
       v-if="notes"
     >
       <NoteListItem 
@@ -23,6 +23,7 @@
 import NoteListItem from './NoteListItem'
 
 export default {
+
   name: 'NoteList',
   components: {
     NoteListItem,
@@ -35,8 +36,11 @@ export default {
 
 <style scoped lang="scss">
 .note-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px
+
+  .note-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
 }
 </style>

@@ -45,14 +45,13 @@ export default {
 
 <style scoped lang="scss">
 .note-editor {
-  background: $theme-yellow-bg;
-  color: $theme-yellow-text;
-  border-radius: $note-curvature;
-  border-top: 8px solid $theme-yellow-strip;
+  @extend %theme-yellow;
+
+  align-self: start;
   padding: 20px;
 
   display: grid;
-  grid-template-rows: max-content auto;
+  grid-template-rows: auto 1fr;
 
   .title,
   .content {
@@ -71,7 +70,5 @@ export default {
   .placeholder {
     font-style: italic;
   }
-
-
 }
 </style>

@@ -50,16 +50,16 @@ export default {
         content: '3rd Content',
       },
     ]
-}
+  }
 }
 </script>
 
 <style scoped>
 .home {
   display: grid;
-  grid-template-columns: minmax(auto, 300px) minmax(700px, max-content);
+  grid-template-columns: minmax(50px, 300px) minmax(300px, 600px);
   gap: 10px;
+  justify-content: center;
   padding: 10px;
-  height: 100vh;
 }
 </style>

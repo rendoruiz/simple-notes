@@ -1,0 +1,11 @@
+%note {
+  border-top: $note-curvature solid;
+  border-radius: $note-curvature;
+}
+
+%theme-yellow {
+  @extend %note;
+  border-top-color: $theme-yellow-strip;
+  background: $theme-yellow-bg;
+  color: $theme-yellow-text;
+}
